@@ -3,6 +3,7 @@
  *
  * STATUS: IN PROGRESS.
  */
+#include <cstdint>
 #include <iostream>
 #define FIND_PRIME 600851475143
 
@@ -12,9 +13,9 @@
 
 
 bool primeFound(int potentialPrime) {
-    int potentialPrimeCeiling { (potentialPrime / 2) };
+    std::int32_t potentialPrimeCeiling { (potentialPrime / 2) };
 
-    for (int counter = 2; counter < potentialPrimeCeiling; counter++) {
+    for (std::int32_t counter = 2; counter < potentialPrimeCeiling; counter++) {
         if ( potentialPrimeCeiling % counter == 0 ) {
             // Non-prime found.
             return false;
@@ -30,7 +31,8 @@ bool primeFound(int potentialPrime) {
 int main() {
 
     // Logically, no prime factor can be greater than half of the value you are trying to find the prime factors of.
-    long primeCeiling { (FIND_PRIME / 2) + 1 };
+    // Recall that in C++ any fractional part of the quotient is dropped, hence the +1.
+    std::int64_t primeCeiling { (FIND_PRIME / 2) + 1 };
 
     // Performing a negative loop allows us to find the largest factor first, don't need to calculate every prime factor.
     do {
